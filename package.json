@@ -9,16 +9,10 @@
   },
   "dependencies": {
     "react": "^16.1.1",
-    "react-dom": "^16.1.1",
-    "open": ">=6.0.0",
-    "eslint": ">=4.18.2",
-    "foreman": ">=3.0.1",
-    "shell-quote": ">=1.6.1",
-    "braces": ">=2.3.1",
-    "webpack-dev-server": ">=3.1.11",
-    "mime": ">=1.4.1"
+    "react-dom": "^16.1.1"
   },
   "main": "src/electron-starter.js",
+  "homepage": "./",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

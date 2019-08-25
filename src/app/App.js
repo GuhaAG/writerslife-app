@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <h2>Writerslife</h2>
+      <div className="text-center">
+        <div className="bg-blue-800 m-6 p-6 rounded shadow-lg">
+          <h2 className="text-white text-2xl font-mono">Writerslife</h2>
         </div>
-        <p className="App-intro">
+        <p className="text-base">
           Welcome to your writing pad. This is your writing life companion.
         </p>
       </div>

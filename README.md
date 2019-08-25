@@ -1,6 +1,6 @@
 # Writerslife
 
-Online writing and distibuting platform for aspirirng writers
+Online writing and distibuting platform for aspiring writers
 
 ## Run in dev mode
 

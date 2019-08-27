@@ -13,7 +13,7 @@ stages:
 Build:
   stage: build
   tags:
-    - node
+    - gitlab-org
   before_script: 
     - npm install 
   script:

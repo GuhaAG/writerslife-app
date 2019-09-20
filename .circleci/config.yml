@@ -10,7 +10,7 @@ jobs: # a collection of steps
           command: 'sudo npm install -g npm@latest'      
       - run:
           name: install-npm-dependencies
-          command: npm install      
+          command: sudo npm install      
       - run: 
           name: compile
-          command: npm run build      
+          command: sudo npm run build      

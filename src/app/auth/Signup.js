@@ -24,27 +24,26 @@ class Signup extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    /* var user = {
+    var user = {
       username: this.state.username,
       email: this.state.email,
       firstname: this.state.firstname,
       lastname: this.state.lastname,
-      password: this.state.password,
-      confirm_password: this.state.confirm_password
+      password: this.state.password
     }
 
-    console.log(user); */
+    alert(user);
   }
 
   render() {
 
     return (
-      
+
       <div className="bg-grey-lighter flex flex-col">
         <form onSubmit={this.handleSubmit}>
           <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
             <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full font-mono">
-              <h1 className="mb-8 text-3xl text-center">Sign up</h1>              
+              <h1 className="mb-8 text-3xl text-center">Sign up</h1>
               <input
                 type="text"
                 className="block border border-grey-light w-full p-3 rounded mb-4"
@@ -57,23 +56,26 @@ class Signup extends Component {
                 className="block border border-grey-light w-full p-3 rounded mb-4"
                 id="lastname"
                 onChange={this.handleChange}
-                placeholder="Last Name" />  
+                placeholder="Last Name" />
 
               <input
-                type="text"
-                className="block border border-grey-light w-full p-3 rounded mb-4"
-                id="email"
-                onChange={this.handleChange}
-                placeholder="Email" />
-
-              <input
+                required
                 type="text"
                 className="block border border-grey-light w-full p-3 rounded mb-4"
                 id="username"
                 onChange={this.handleChange}
-                placeholder="Username" />   
+                placeholder="Username*" />
 
               <input
+                required
+                type="text"
+                className="block border border-grey-light w-full p-3 rounded mb-4"
+                id="email"
+                onChange={this.handleChange}
+                placeholder="Email*" />
+
+              <input
+                required
                 type="password"
                 className="block border border-grey-light w-full p-3 rounded mb-4"
                 id="password"
@@ -81,10 +83,11 @@ class Signup extends Component {
                 placeholder="Password" />
 
               <input
+                required
                 type="password"
                 className="block border border-grey-light w-full p-3 rounded mb-4"
                 id="confirm_password"
-                onChange={this.handleChange}
+                onChange={this.handleConfirmPassword}
                 placeholder="Confirm Password" />
 
               <button
@@ -101,7 +104,7 @@ class Signup extends Component {
                     </a>.
                 </div>
           </div>
-        </form>    
+        </form>
       </div>
     );
   }

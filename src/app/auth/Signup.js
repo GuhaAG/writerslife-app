@@ -11,7 +11,9 @@ class Signup extends Component {
       lastname: "",
       email: "",
       password: "",
-      confirm_password: ""
+      confirm_password: "",
+      error: false,
+      errorMessage: ""
     };
   }
 
@@ -23,6 +25,15 @@ class Signup extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+
+    if (this.state.password !== this.state.confirm_password) {
+      this.setState({
+        error: true,
+        errorMessage: "Passwords do not match"
+      });
+
+      return;
+    }
 
     var user = {
       username: this.state.username,
@@ -80,15 +91,19 @@ class Signup extends Component {
                 className="block border border-grey-light w-full p-3 rounded mb-4"
                 id="password"
                 onChange={this.handleChange}
-                placeholder="Password" />
+                placeholder="Password*" />
 
               <input
                 required
                 type="password"
                 className="block border border-grey-light w-full p-3 rounded mb-4"
                 id="confirm_password"
-                onChange={this.handleConfirmPassword}
-                placeholder="Confirm Password" />
+                onChange={this.handleChange}
+                placeholder="Confirm Password*" />
+
+              {this.state.error && <div>
+                <p className="text-red-500">{this.state.errorMessage}</p>
+              </div>}
 
               <button
                 type="submit"

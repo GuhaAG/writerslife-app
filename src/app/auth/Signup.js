@@ -24,7 +24,7 @@ class Signup extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    var user = {
+    /* var user = {
       username: this.state.username,
       email: this.state.email,
       firstname: this.state.firstname,
@@ -33,6 +33,7 @@ class Signup extends Component {
       confirm_password: this.state.confirm_password
     }
 
+    console.log(user); */
   }
 
   render() {
@@ -40,43 +41,50 @@ class Signup extends Component {
     return (
       
       <div className="bg-grey-lighter flex flex-col">
+        <form onSubmit={this.handleSubmit}>
           <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
             <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full font-mono">
-              <h1 className="mb-8 text-3xl text-center">Sign up</h1>
+              <h1 className="mb-8 text-3xl text-center">Sign up</h1>              
               <input
                 type="text"
                 className="block border border-grey-light w-full p-3 rounded mb-4"
-                name="firstname"
+                id="firstname"
+                onChange={this.handleChange}
                 placeholder="First Name" />
 
               <input
                 type="text"
                 className="block border border-grey-light w-full p-3 rounded mb-4"
-                name="lastname"
+                id="lastname"
+                onChange={this.handleChange}
                 placeholder="Last Name" />  
 
               <input
                 type="text"
                 className="block border border-grey-light w-full p-3 rounded mb-4"
-                name="email"
+                id="email"
+                onChange={this.handleChange}
                 placeholder="Email" />
 
               <input
                 type="text"
                 className="block border border-grey-light w-full p-3 rounded mb-4"
-                name="username"
+                id="username"
+                onChange={this.handleChange}
                 placeholder="Username" />   
 
               <input
                 type="password"
                 className="block border border-grey-light w-full p-3 rounded mb-4"
-                name="password"
+                id="password"
+                onChange={this.handleChange}
                 placeholder="Password" />
 
               <input
                 type="password"
                 className="block border border-grey-light w-full p-3 rounded mb-4"
-                name="confirm_password"
+                id="confirm_password"
+                onChange={this.handleChange}
                 placeholder="Confirm Password" />
 
               <button
@@ -93,6 +101,7 @@ class Signup extends Component {
                     </a>.
                 </div>
           </div>
+        </form>    
       </div>
     );
   }

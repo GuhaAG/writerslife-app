@@ -27,7 +27,7 @@ class Signup extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    
+
     if (this.state.password !== this.state.confirm_password) {
       this.setState({
         error: true,
@@ -36,7 +36,7 @@ class Signup extends Component {
       Swal.fire({
         icon: 'error',
         title: '',
-        text: this.state.errorMessage,
+        text: "Passwords do not match",
       })
 
       return;
@@ -58,7 +58,7 @@ class Signup extends Component {
         });
         let timerInterval
         Swal.fire({
-          title: 'Welcome ! Your account was created.',
+          title: 'Welcome, Your account was created successfully.',
           html: 'Taking you to Login page..',
           timer: 3000,
           timerProgressBar: true,

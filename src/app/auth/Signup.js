@@ -27,7 +27,7 @@ class Signup extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
+    
     if (this.state.password !== this.state.confirm_password) {
       this.setState({
         error: true,

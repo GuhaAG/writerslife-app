@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 class Signup extends Component {
 
@@ -25,12 +27,17 @@ class Signup extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
+    
     if (this.state.password !== this.state.confirm_password) {
       this.setState({
         error: true,
         errorMessage: "Passwords do not match"
       });
+      Swal.fire({
+        icon: 'error',
+        title: '',
+        text: this.state.errorMessage,
+      })
 
       return;
     }
@@ -43,7 +50,45 @@ class Signup extends Component {
       password: this.state.password
     }
 
-    alert(user);
+    axios.post('http://localhost:8081/users/add', user)
+      .then((response) => {
+        this.setState({
+          error: false,
+          errorMessage: ''
+        });
+        let timerInterval
+        Swal.fire({
+          title: 'Welcome ! Your account was created.',
+          html: 'Taking you to Login page..',
+          timer: 3000,
+          timerProgressBar: true,
+          onBeforeOpen: () => {
+            Swal.showLoading();
+          },
+          onClose: () => {
+            clearInterval(timerInterval);
+            window.location.replace("/Login");
+          }
+        }).then((result) => {
+          if (result.dismiss === Swal.DismissReason.timer) {
+            console.log('I was closed by the timer'); // eslint-disable-line
+          }
+        })
+      }, (error) => {
+        let errMessage = error.response.data.message;
+        if (error.response.data && error.response.data.errors && error.response.data.errors[0].objectName === 'writersUserBuilder') {
+          errMessage = error.response.data.errors[0].defaultMessage;
+        }
+        this.setState({
+          error: true,
+          errorMessage: errMessage
+        });
+        Swal.fire({
+          icon: 'error',
+          title: '',
+          text: errMessage,
+        })
+      });
   }
 
   render() {

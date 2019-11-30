@@ -8,11 +8,13 @@
     "react-scripts": "0.8.5"
   },
   "dependencies": {
-    "tailwindcss": "^1.1.2",
+    "axios": "^0.19.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-router": "^4.3.1",
-    "react-router-dom": "^4.3.1"
+    "react-router-dom": "^4.3.1",
+    "sweetalert2": "^9.4.0",
+    "tailwindcss": "^1.1.2"
   },
   "main": "src/electron-starter.js",
   "homepage": "./",

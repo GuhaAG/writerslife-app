@@ -76,7 +76,7 @@ class Signup extends Component {
         })
       }, (error) => {
         let errMessage = error.response.data.message;
-        if (error.response.data && error.response.data.errors && error.response.data.errors[0].objectName === 'writersUserBuilder') {
+        if (error.response.data && error.response.data.errors && error.response.data.errors[0].defaultMessage) {
           errMessage = error.response.data.errors[0].defaultMessage;
         }
         this.setState({

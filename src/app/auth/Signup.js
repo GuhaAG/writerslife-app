@@ -27,7 +27,7 @@ class Signup extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    
+
     if (this.state.password !== this.state.confirm_password) {
       this.setState({
         error: true,
@@ -60,7 +60,7 @@ class Signup extends Component {
         Swal.fire({
           title: 'Welcome, Your account was created successfully.',
           html: 'Taking you to Login page..',
-          timer: 3000,
+          timer: 1200,
           timerProgressBar: true,
           onBeforeOpen: () => {
             Swal.showLoading();

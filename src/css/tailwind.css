@@ -4681,6 +4681,14 @@ video {
   margin-left: 16rem;
 }
 
+.mr-128 {
+  margin-right: 32rem;
+}
+
+.ml-128 {
+  margin-left: 32rem;
+}
+
 .mt-auto {
   margin-top: auto;
 }

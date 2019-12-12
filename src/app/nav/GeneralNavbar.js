@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
+import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const isLoggedIn = window.localStorage.getItem("isLoggedIn");
+const username = window.localStorage.getItem("username");
 
 const handleLogout = () => {
   window.localStorage.removeItem("isLoggedIn");
   window.localStorage.removeItem("loginJwt");
+  window.localStorage.removeItem("username");
 
-  window.location.replace("/");
-}
-
-const redirectToHome = () => {
   window.location.replace("/");
 }
 
@@ -18,28 +18,25 @@ class GeneralNavbar extends Component {
 
     return (
       <div>
-        <div className="bg-blue-800 m-6 p-6 rounded shadow-lg">
-
-          {(isLoggedIn === "true") &&
-            <a className="font-mono text-right self-end rounded bg-blue-800 text-white mr-128"
-              href="/Profile">
-              My Profile
-          </a>
-          }
-
-          <button className="ml-56 mr-56" onClick={redirectToHome}>
-            <h2 className="text-white text-2xl font-mono">Writerslife</h2>
-          </button>
-
-          {(isLoggedIn === "true") &&
-            <button className="font-mono text-right self-end rounded bg-blue-800 text-white ml-128"
-              onClick={handleLogout}>
-              Logout
-          </button>
-
-          }
-
-        </div>
+        <Container>
+          <Navbar className="bg-blue-800 text-center text-white font-mono m-6 p-6 rounded shadow-lg" variant="dark">
+            <Navbar.Brand href="/">Writerslife</Navbar.Brand>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse id="responsive-navbar-nav">
+              <Nav className="mr-auto">
+                {(isLoggedIn === "true") &&
+                  <NavDropdown title={username} id="collasible-nav-dropdown">
+                    <NavDropdown.Item href="/Profile">Profile</NavDropdown.Item>
+                    <NavDropdown.Item href="/Settings">Settings</NavDropdown.Item>
+                  </NavDropdown>
+                }
+              </Nav>
+              <Nav>
+                <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          </Navbar>
+        </Container>
       </div>
     )
   }

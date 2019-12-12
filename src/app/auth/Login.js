@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import jwtDecode from 'jwt-decode';
 
 class Login extends Component {
 
@@ -55,7 +56,8 @@ class Login extends Component {
         });
 
         window.localStorage.setItem("isLoggedIn", true);
-        window.localStorage.setItem("loginJwt", response.data.id_token);
+        window.localStorage.setItem("loginJwt", response.data.token);
+        window.localStorage.setItem("username", jwtDecode(response.data.token).sub);
 
         window.location.replace("/");
       }, (error) => {

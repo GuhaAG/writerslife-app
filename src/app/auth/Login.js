@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Swal from 'sweetalert2';
 import jwtDecode from 'jwt-decode';
+import ErrorHandler from '../components/ErrorHandler';
+
+const axiosInstance = axios.create({
+  baseURL: 'http://localhost:8081/',
+  timeout: 1000
+});
 
 class Login extends Component {
-
   constructor(props) {
     super(props);
 
@@ -47,9 +51,8 @@ class Login extends Component {
       }
     }
 
-    axios.post('http://localhost:8081/authenticate', user)
+    axiosInstance.post('authenticate', user)
       .then((response) => {
-
         this.setState({
           error: false,
           errorMessage: ''
@@ -61,26 +64,15 @@ class Login extends Component {
 
         window.location.replace("/");
       }, (error) => {
-
         window.localStorage.setItem("isLoggedIn", false);
         window.localStorage.setItem("loginJwt", "");
 
-        let errMessage = error.response.data.message;
-        if (error.response.data && error.response.data.errors && error.response.data.errors[0].defaultMessage) {
-          errMessage = error.response.data.errors[0].defaultMessage;
-        }
+        let errMessage = ErrorHandler.sweetAlertApiErrorMessage(error);
 
         this.setState({
           error: true,
           errorMessage: errMessage
         });
-
-        Swal.fire({
-          icon: 'error',
-          title: '',
-          text: errMessage,
-        })
-
       });
   }
 
@@ -100,7 +92,7 @@ class Login extends Component {
                 className="block border border-grey-light w-full p-3 rounded mb-4"
                 id="username"
                 onChange={this.handleChange}
-                placeholder="Username/Email" />
+                placeholder="Username" />
 
               <input
                 required

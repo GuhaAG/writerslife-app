@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import ErrorHandler from '../components/ErrorHandler';
+
+const axiosInstance = axios.create({
+  baseURL: 'http://localhost:8081/',
+  timeout: 1000
+});
 
 class Signup extends Component {
 
@@ -50,13 +56,15 @@ class Signup extends Component {
       password: this.state.password
     }
 
-    axios.post('http://localhost:8081/users/add', user)
-      .then((response) => {
+    axiosInstance.post('users/add', user)
+      .then(() => {
         this.setState({
           error: false,
           errorMessage: ''
         });
+
         let timerInterval
+
         Swal.fire({
           title: 'Welcome, Your account was created successfully.',
           html: 'Taking you to Login page..',
@@ -75,19 +83,12 @@ class Signup extends Component {
           }
         })
       }, (error) => {
-        let errMessage = error.response.data.message;
-        if (error.response.data && error.response.data.errors && error.response.data.errors[0].defaultMessage) {
-          errMessage = error.response.data.errors[0].defaultMessage;
-        }
+        let errMessage = ErrorHandler.sweetAlertApiErrorMessage(error);
+
         this.setState({
           error: true,
           errorMessage: errMessage
         });
-        Swal.fire({
-          icon: 'error',
-          title: '',
-          text: errMessage,
-        })
       });
   }
 

@@ -19,7 +19,7 @@ class GeneralNavbar extends Component {
     return (
       <div>
         <Container>
-          <Navbar className="bg-blue-800 text-center text-white font-mono m-6 p-6 rounded shadow-lg" variant="dark">
+          <Navbar className="bg-blue-800 text-center text-white font-mono my-6 p-6 rounded shadow-lg" variant="dark">
             <Navbar.Brand href="/">Writerslife</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">

@@ -35,20 +35,9 @@ class Login extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    var userId = this.state.username;
-    var user;
-
-    if (userId.indexOf("@") === -1) {
-      user = {
-        username: userId,
-        password: this.state.password
-      }
-    }
-    else {
-      user = {
-        email: userId,
-        password: this.state.password
-      }
+    var user = {
+      username: this.state.username,
+      password: this.state.password
     }
 
     axiosInstance.post('authenticate', user)
@@ -106,6 +95,10 @@ class Login extends Component {
                 <p className="text-red-500">{this.state.errorMessage}</p>
               </div>}
 
+              <div>
+                <a className="no-underline border-b border-blue text-blue" href="../PasswordReset/">Forgot password ?</a>
+              </div>
+
               <button
                 type="submit"
                 className="w-full text-center py-3 rounded bg-blue-800 text-white focus:outline-none my-1"
@@ -115,7 +108,7 @@ class Login extends Component {
 
             <div className="text-grey-dark mt-6">
               Don't have an account yet ?&nbsp;&nbsp;
-                    <a className="no-underline border-b border-blue text-blue" href="../signup/">
+                    <a className="no-underline border-b border-blue text-blue" href="../Signup/">
                 Create one
                     </a>.
                 </div>

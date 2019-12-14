@@ -5,7 +5,7 @@ import Main from './Main';
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="text-center">
         <GeneralNavbar />
         <Main />
       </div>

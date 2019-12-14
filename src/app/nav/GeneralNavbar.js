@@ -31,9 +31,11 @@ class GeneralNavbar extends Component {
                   </NavDropdown>
                 }
               </Nav>
-              <Nav>
-                <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
-              </Nav>
+              {(isLoggedIn === "true") &&
+                <Nav>
+                  <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+                </Nav>
+              }
             </Navbar.Collapse>
           </Navbar>
         </Container>
